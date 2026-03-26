@@ -29,6 +29,9 @@ jobs:
     - name: Install the project
       run: uv sync --frozen
 
+    - name: Check code
+      run: uvx ruff check . --output-format=github
+
     # Run tests
     - name: Run tests
       run: uv run pytest
