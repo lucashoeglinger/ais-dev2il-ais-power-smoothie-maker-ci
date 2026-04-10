@@ -50,6 +50,8 @@ jobs:
   scan:
     name: Security Checks
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
     steps:
       - uses: actions/checkout@v4
         with:
@@ -67,3 +69,8 @@ jobs:
           echo '```text' >> $GITHUB_STEP_SUMMARY
           uvx uv-secure --config=pyproject.toml | tee -a $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
+      - name: Scan for secrets
+        uses: gitleaks/gitleaks-action@v2
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
