@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "pandas>=3.0.1",
+    "pre-commit>=4.5.1",
     "pyjokes>=0.8.3",
     "rich>=14.2.0",
 ]
